@@ -1,0 +1,115 @@
+package com.yannfigueiredo.petsarea.entities;
+
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Objects;
+
+import com.yannfigueiredo.petsarea.entities.enums.Gender;
+
+public class Pet implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	private Long id;
+	private String name;
+	private String age;
+	private Gender gender;
+	private String breed;
+	private String description;
+	private String photo;
+	private LocalDate registerDate;
+	
+	public Pet() {}
+
+	public Pet(Long id, String name, String age, Gender gender, String breed, String description, String photo,
+			LocalDate registerDate) {
+		this.id = id;
+		this.name = name;
+		this.age = age;
+		this.gender = gender;
+		this.breed = breed;
+		this.description = description;
+		this.photo = photo;
+		this.registerDate = registerDate;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAge() {
+		return age;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
+	public String getBreed() {
+		return breed;
+	}
+
+	public void setBreed(String breed) {
+		this.breed = breed;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+
+	public LocalDate getRegisterDate() {
+		return registerDate;
+	}
+
+	public void setRegisterDate(LocalDate registerDate) {
+		this.registerDate = registerDate;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pet other = (Pet) obj;
+		return Objects.equals(id, other.id);
+	}
+}
