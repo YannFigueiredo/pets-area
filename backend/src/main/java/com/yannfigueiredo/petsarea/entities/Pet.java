@@ -28,7 +28,6 @@ public class Pet implements Serializable {
 	private String breed;
 	private String description;
 	private String photo;
-	private LocalDate registerDate;
 	
 	@ManyToOne
 	@JoinColumn(name = "owner_id")
@@ -45,7 +44,6 @@ public class Pet implements Serializable {
 		this.breed = breed;
 		this.description = description;
 		this.photo = photo;
-		this.registerDate = registerDate;
 	}
 
 	public Long getId() {
@@ -102,14 +100,6 @@ public class Pet implements Serializable {
 
 	public void setPhoto(String photo) {
 		this.photo = photo;
-	}
-
-	public LocalDate getRegisterDate() {
-		return registerDate;
-	}
-
-	public void setRegisterDate(LocalDate registerDate) {
-		this.registerDate = registerDate;
 	}
 	
 	public Owner getOwner() {

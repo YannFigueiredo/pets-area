@@ -13,7 +13,6 @@ public class PetDTO {
 	private String breed;
 	private String description;
 	private String photo;
-	private LocalDate registerDate;
 	private String ownerName;
 	
 	public PetDTO( ) {}
@@ -26,7 +25,6 @@ public class PetDTO {
 		this.breed = entity.getBreed();
 		this.description = entity.getDescription();
 		this.photo = entity.getPhoto();
-		this.registerDate = entity.getRegisterDate();
 		this.ownerName = entity.getOwner().getName();
 	}
 
@@ -84,14 +82,6 @@ public class PetDTO {
 
 	public void setPhoto(String photo) {
 		this.photo = photo;
-	}
-
-	public LocalDate getRegisterDate() {
-		return registerDate;
-	}
-
-	public void setRegisterDate(LocalDate registerDate) {
-		this.registerDate = registerDate;
 	}
 
 	public String getOwnerName() {
