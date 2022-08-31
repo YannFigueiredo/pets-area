@@ -104,6 +104,10 @@ public class Pet implements Serializable {
 	public Owner getOwner() {
 		return owner;
 	}
+	
+	public void setOwner(Owner owner) {
+		this.owner = owner;
+	}
 
 	@Override
 	public int hashCode() {

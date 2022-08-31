@@ -1,8 +1,12 @@
 package com.yannfigueiredo.petsarea.dto;
 
+import java.io.Serializable;
+
 import com.yannfigueiredo.petsarea.entities.enums.Gender;
 
-public class OwnerInsertDTO {
+public class OwnerInsertDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	private String firstName;
 	private String lastName;
 	private Integer age;
