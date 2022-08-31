@@ -55,4 +55,9 @@ public class OwnerService {
 		
 		return new OwnerDTO(entity);
 	}
+	
+	@Transactional
+	public void delete(Long id) {
+		ownerRepository.deleteById(id);
+	}
 }
