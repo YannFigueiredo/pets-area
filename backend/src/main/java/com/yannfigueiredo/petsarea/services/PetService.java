@@ -68,4 +68,9 @@ public class PetService {
 		
 		return new PetDTO(entity);
 	}
+	
+	@Transactional
+	public void delete(Long id) {
+		petRepository.deleteById(id);
+	}
 }
