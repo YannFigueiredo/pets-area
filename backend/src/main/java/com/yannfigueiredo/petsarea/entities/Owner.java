@@ -17,6 +17,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.yannfigueiredo.petsarea.entities.enums.Gender;
+
 @Entity
 @Table(name="tb_owner")
 public class Owner implements Serializable {
@@ -25,7 +27,11 @@ public class Owner implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String name;
+	private String firstName;
+	private String lastName;
+	private Integer age;
+	private Gender gender;
+	private String photo;
 	private String email;
 	private String password;
 	
@@ -40,9 +46,13 @@ public class Owner implements Serializable {
 	
 	public Owner() {}
 
-	public Owner(Long id, String name, String email, String password) {
+	public Owner(Long id, String firstName, String lastName, Integer age, Gender gender, String photo, String email, String password) {
 		this.id = id;
-		this.name = name;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.age = age;
+		this.gender = gender;
+		this.photo = photo;
 		this.email = email;
 		this.password = password;
 	}
@@ -55,12 +65,44 @@ public class Owner implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 
 	public String getEmail() {

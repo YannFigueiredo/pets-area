@@ -1,19 +1,19 @@
 package com.yannfigueiredo.petsarea.dto;
 
-import java.time.LocalDate;
-
 import com.yannfigueiredo.petsarea.entities.Pet;
 import com.yannfigueiredo.petsarea.entities.enums.Gender;
+import com.yannfigueiredo.petsarea.entities.enums.Type;
 
 public class PetDTO {
 	private Long id;
 	private String name;
-	private String age;
+	private Integer age;
 	private Gender gender;
-	private String breed;
+	private Type type;
 	private String description;
 	private String photo;
 	private String ownerName;
+	private Long ownerId;
 	
 	public PetDTO( ) {}
 	
@@ -22,10 +22,11 @@ public class PetDTO {
 		this.name = entity.getName();
 		this.age = entity.getAge();
 		this.gender = entity.getGender();
-		this.breed = entity.getBreed();
+		this.type = entity.getType();
 		this.description = entity.getDescription();
 		this.photo = entity.getPhoto();
-		this.ownerName = entity.getOwner().getName();
+		this.ownerName = entity.getOwner().getFirstName() + " " + entity.getOwner().getLastName();
+		this.ownerId = entity.getOwner().getId();
 	}
 
 	public Long getId() {
@@ -44,11 +45,11 @@ public class PetDTO {
 		this.name = name;
 	}
 
-	public String getAge() {
+	public Integer getAge() {
 		return age;
 	}
 
-	public void setAge(String age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 
@@ -60,12 +61,12 @@ public class PetDTO {
 		this.gender = gender;
 	}
 
-	public String getBreed() {
-		return breed;
+	public Type getType() {
+		return type;
 	}
 
-	public void setBreed(String breed) {
-		this.breed = breed;
+	public void setType(Type type) {
+		this.type = type;
 	}
 
 	public String getDescription() {
@@ -88,7 +89,7 @@ public class PetDTO {
 		return ownerName;
 	}
 
-	public void setOwnerName(String ownerName) {
-		this.ownerName = ownerName;
+	public Long getOwnerId() {
+		return ownerId;
 	}
 }

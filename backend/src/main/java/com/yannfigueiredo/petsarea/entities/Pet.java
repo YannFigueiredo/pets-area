@@ -1,7 +1,6 @@
 package com.yannfigueiredo.petsarea.entities;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -13,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.yannfigueiredo.petsarea.entities.enums.Gender;
+import com.yannfigueiredo.petsarea.entities.enums.Type;
 
 @Entity
 @Table(name= "tb_pet")
@@ -23,9 +23,9 @@ public class Pet implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	private String age;
+	private Integer age;
 	private Gender gender;
-	private String breed;
+	private Type type;
 	private String description;
 	private String photo;
 	
@@ -35,13 +35,12 @@ public class Pet implements Serializable {
 	
 	public Pet() {}
 
-	public Pet(Long id, String name, String age, Gender gender, String breed, String description, String photo,
-			LocalDate registerDate) {
+	public Pet(Long id, String name, Integer age, Gender gender, Type type, String description, String photo) {
 		this.id = id;
 		this.name = name;
 		this.age = age;
 		this.gender = gender;
-		this.breed = breed;
+		this.type = type;
 		this.description = description;
 		this.photo = photo;
 	}
@@ -62,11 +61,11 @@ public class Pet implements Serializable {
 		this.name = name;
 	}
 
-	public String getAge() {
+	public Integer getAge() {
 		return age;
 	}
 
-	public void setAge(String age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 
@@ -78,12 +77,12 @@ public class Pet implements Serializable {
 		this.gender = gender;
 	}
 
-	public String getBreed() {
-		return breed;
+	public Type getType() {
+		return type;
 	}
 
-	public void setBreed(String breed) {
-		this.breed = breed;
+	public void setType(Type type) {
+		this.type = type;
 	}
 
 	public String getDescription() {
