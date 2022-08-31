@@ -51,4 +51,21 @@ public class PetService {
 		
 		return new PetDTO(entity);
 	}
+	
+	@Transactional
+	public PetDTO update(Long id, PetDTO dto) {
+		Pet entity = petRepository.getReferenceById(id);
+		
+		entity.setName(dto.getName() == null ? entity.getName() : dto.getName());
+		entity.setDescription(dto.getDescription() == null ? entity.getDescription() : dto.getDescription());         
+		entity.setGender(dto.getGender() == null ? entity.getGender() : dto.getGender());
+		entity.setType(dto.getType() == null ? entity.getType() : dto.getType());
+		entity.setAge(dto.getAge() == null ? entity.getAge() : dto.getAge());
+		entity.setPhoto(dto.getPhoto() == null ? entity.getPhoto() : dto.getPhoto());
+		entity.setOwner(ownerRepository.getReferenceById(dto.getOwnerId() == null ? entity.getOwner().getId() : dto.getOwnerId()));
+		
+		entity = petRepository.save(entity);
+		
+		return new PetDTO(entity);
+	}
 }
