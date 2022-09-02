@@ -5,6 +5,8 @@ import java.util.Optional;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +15,7 @@ import com.yannfigueiredo.petsarea.dto.OwnerInsertDTO;
 import com.yannfigueiredo.petsarea.entities.Owner;
 import com.yannfigueiredo.petsarea.repositories.OwnerRepository;
 import com.yannfigueiredo.petsarea.services.exceptions.ControllerNotFoundException;
+import com.yannfigueiredo.petsarea.services.exceptions.DatabaseException;
 
 @Service
 public class OwnerService {
@@ -63,8 +66,13 @@ public class OwnerService {
 		}
 	}
 	
-	@Transactional
 	public void delete(Long id) {
-		ownerRepository.deleteById(id);
+		try {
+			ownerRepository.deleteById(id);
+		} catch(EmptyResultDataAccessException e) {
+			throw new ControllerNotFoundException("O ID " + id + " não foi encontrado");
+		} catch(DataIntegrityViolationException e) {
+			throw new DatabaseException("Violação da integridade do banco de dados");
+		}
 	}
 }

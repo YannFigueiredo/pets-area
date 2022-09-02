@@ -5,6 +5,7 @@ import java.util.Optional;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -76,8 +77,11 @@ public class PetService {
 		}
 	}
 	
-	@Transactional
 	public void delete(Long id) {
-		petRepository.deleteById(id);
+		try {
+			petRepository.deleteById(id);
+		}catch(EmptyResultDataAccessException e) {
+			throw new ControllerNotFoundException("O ID " + id + " não foi encontrado");
+		}
 	}
 }
