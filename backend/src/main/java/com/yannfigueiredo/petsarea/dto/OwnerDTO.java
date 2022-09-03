@@ -1,12 +1,17 @@
 package com.yannfigueiredo.petsarea.dto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.yannfigueiredo.petsarea.entities.Owner;
 import com.yannfigueiredo.petsarea.entities.enums.Gender;
 
-public class OwnerDTO {
+public class OwnerDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	private Long id;
 	private String firstName;
 	private String lastName;
@@ -15,6 +20,7 @@ public class OwnerDTO {
 	private String photo;
 	private String email;
 	private List<PetDTO> pets = new ArrayList<>();
+	private Set<RoleDTO> roles = new HashSet<>();
 	
 	public OwnerDTO() {}
 	
@@ -27,14 +33,8 @@ public class OwnerDTO {
 		this.photo = entity.getPhoto();
 		this.email = entity.getEmail();
 		entity.getPets().forEach(pet -> this.pets.add(new PetDTO(pet)));
+		entity.getRoles().forEach(role -> this.roles.add(new RoleDTO(role)));
 	}
-	
-	/*
-	public OwnerDTO(Owner entity, List<Pet> pets) {
-		this(entity);
-		
-		pets.forEach(pet -> this.pets.add(new PetDTO(pet)));
-	}*/
 
 	public Long getId() {
 		return id;
@@ -94,5 +94,9 @@ public class OwnerDTO {
 
 	public List<PetDTO> getPets() {
 		return pets;
+	}
+
+	public Set<RoleDTO> getRoles() {
+		return roles;
 	}
 }

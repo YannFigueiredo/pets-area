@@ -7,20 +7,30 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yannfigueiredo.petsarea.dto.OwnerDTO;
 import com.yannfigueiredo.petsarea.dto.OwnerInsertDTO;
+import com.yannfigueiredo.petsarea.dto.RoleDTO;
 import com.yannfigueiredo.petsarea.entities.Owner;
+import com.yannfigueiredo.petsarea.entities.Role;
 import com.yannfigueiredo.petsarea.repositories.OwnerRepository;
+import com.yannfigueiredo.petsarea.repositories.RoleRepository;
 import com.yannfigueiredo.petsarea.services.exceptions.ControllerNotFoundException;
 import com.yannfigueiredo.petsarea.services.exceptions.DatabaseException;
 
 @Service
 public class OwnerService {
+	@Autowired 
+	BCryptPasswordEncoder passwordEncoder;
+	
 	@Autowired
 	private OwnerRepository ownerRepository;
+	
+	@Autowired
+	private RoleRepository roleRepository;
 	
 	@Transactional(readOnly = true)
 	public OwnerDTO findById(Long id) {
@@ -40,7 +50,13 @@ public class OwnerService {
 		entity.setGender(dto.getGender());
 		entity.setPhoto(dto.getPhoto());
 		entity.setEmail(dto.getEmail());
-		entity.setPassword(dto.getPasssword());
+		entity.setPassword(passwordEncoder.encode(dto.getPassword()));
+		
+		entity.getRoles().clear();
+		for(Role role : dto.getRoles()) {
+			Role newRole = roleRepository.getReferenceById(role.getId());
+			entity.getRoles().add(newRole);
+		}
 		
 		entity = ownerRepository.save(entity);
 		

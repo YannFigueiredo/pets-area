@@ -1,7 +1,10 @@
 package com.yannfigueiredo.petsarea.dto;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+import com.yannfigueiredo.petsarea.entities.Role;
 import com.yannfigueiredo.petsarea.entities.enums.Gender;
 
 public class OwnerInsertDTO implements Serializable {
@@ -13,7 +16,9 @@ public class OwnerInsertDTO implements Serializable {
 	private Gender gender;
 	private String photo;
 	private String email;
-	private String passsword;
+	private String password;
+	
+	private Set<Role> roles = new HashSet<>();
 	
 	public OwnerInsertDTO() {}
 
@@ -65,11 +70,15 @@ public class OwnerInsertDTO implements Serializable {
 		this.email = email;
 	}
 
-	public String getPasssword() {
-		return passsword;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPasssword(String passsword) {
-		this.passsword = passsword;
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
 	}
 }

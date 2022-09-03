@@ -1,10 +1,14 @@
 package com.yannfigueiredo.petsarea.dto;
 
+import java.io.Serializable;
+
 import com.yannfigueiredo.petsarea.entities.Pet;
 import com.yannfigueiredo.petsarea.entities.enums.Gender;
 import com.yannfigueiredo.petsarea.entities.enums.Type;
 
-public class PetDTO {
+public class PetDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	private Long id;
 	private String name;
 	private Integer age;

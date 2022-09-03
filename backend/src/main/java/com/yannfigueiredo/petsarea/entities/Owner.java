@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,13 +34,16 @@ public class Owner implements Serializable {
 	private Integer age;
 	private Gender gender;
 	private String photo;
+	
+	@Column(unique = true)
 	private String email;
+	
 	private String password;
 	
 	@OneToMany(mappedBy = "owner")
 	private List<Pet> pets = new ArrayList<>();
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "tb_owner_role", 
 			   joinColumns = @JoinColumn(name = "owner_id"),
 			   inverseJoinColumns = @JoinColumn(name = "role_id"))
