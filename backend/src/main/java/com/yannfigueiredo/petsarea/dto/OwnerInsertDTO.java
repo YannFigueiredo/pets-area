@@ -13,7 +13,9 @@ import javax.validation.constraints.Size;
 
 import com.yannfigueiredo.petsarea.entities.Role;
 import com.yannfigueiredo.petsarea.entities.enums.Gender;
+import com.yannfigueiredo.petsarea.services.validation.OwnerInsertValid;
 
+@OwnerInsertValid
 public class OwnerInsertDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

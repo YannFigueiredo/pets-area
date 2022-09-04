@@ -7,5 +7,5 @@ import com.yannfigueiredo.petsarea.entities.Owner;
 
 @Repository
 public interface OwnerRepository extends JpaRepository<Owner, Long> {
-
+	Owner findByEmail(String email);
 }
