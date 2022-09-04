@@ -3,7 +3,7 @@ package com.yannfigueiredo.petsarea.dto;
 import java.io.Serializable;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
@@ -23,10 +23,10 @@ public class PetDTO implements Serializable {
 	@PositiveOrZero(message = "O valor deve ser 0 ou maior.")
 	private Integer age;
 	
-	@NotEmpty(message = "Deve ser escolhido um gênero.")
+	@NotNull(message = "Deve ser escolhido um gênero.")
 	private Gender gender;
 	
-	@NotEmpty(message = "Deve ser escolhido um tipo.")
+	@NotNull(message = "Deve ser escolhido um tipo.")
 	private Type type;
 	
 	@Size(min = 0, max = 250, message = "A descrição deve ter até 250 caracteres.")
@@ -34,6 +34,8 @@ public class PetDTO implements Serializable {
 	
 	private String photo;
 	private String ownerName;
+	
+	@NotNull(message = "Campo obrigatório.")
 	private Long ownerId;
 	
 	public PetDTO( ) {}

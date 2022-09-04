@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.yannfigueiredo.petsarea.dto.OwnerDTO;
 import com.yannfigueiredo.petsarea.dto.OwnerInsertDTO;
+import com.yannfigueiredo.petsarea.dto.OwnerUpdateDTO;
 import com.yannfigueiredo.petsarea.dto.PetDTO;
 import com.yannfigueiredo.petsarea.services.OwnerService;
 
@@ -39,10 +40,10 @@ public class OwnerController {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<OwnerDTO> update(@PathVariable Long id, @Valid @RequestBody OwnerDTO dto) {
-		dto = ownerService.update(id, dto);
-		
-		return ResponseEntity.ok().body(dto);
+	public ResponseEntity<OwnerDTO> update(@PathVariable Long id, @Valid @RequestBody OwnerUpdateDTO dto) {
+		OwnerDTO newDTO = ownerService.update(id, dto);
+		                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+		return ResponseEntity.ok().body(newDTO);
 	}
 	
 	@DeleteMapping(value = "/{id}")

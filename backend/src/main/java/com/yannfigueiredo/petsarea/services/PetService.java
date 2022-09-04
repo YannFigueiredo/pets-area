@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yannfigueiredo.petsarea.dto.PetDTO;
-import com.yannfigueiredo.petsarea.dto.PetInsertDTO;
 import com.yannfigueiredo.petsarea.entities.Pet;
 import com.yannfigueiredo.petsarea.repositories.OwnerRepository;
 import com.yannfigueiredo.petsarea.repositories.PetRepository;
@@ -40,7 +39,7 @@ public class PetService {
 	}
 	
 	@Transactional
-	public PetDTO insert(PetInsertDTO dto) {
+	public PetDTO insert(PetDTO dto) {
 		Pet entity = new Pet();
 		
 		entity.setName(dto.getName());

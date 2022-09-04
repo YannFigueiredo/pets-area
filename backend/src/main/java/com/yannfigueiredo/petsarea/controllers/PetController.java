@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yannfigueiredo.petsarea.dto.PetDTO;
-import com.yannfigueiredo.petsarea.dto.PetInsertDTO;
 import com.yannfigueiredo.petsarea.services.PetService;
 
 @RestController
@@ -49,7 +48,7 @@ public class PetController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<PetDTO> insert(@Valid @RequestBody PetInsertDTO dto) {
+	public ResponseEntity<PetDTO> insert(@Valid @RequestBody PetDTO dto) {
 		PetDTO newDTO = petService.insert(dto);
 		
 		return ResponseEntity.ok().body(newDTO);
