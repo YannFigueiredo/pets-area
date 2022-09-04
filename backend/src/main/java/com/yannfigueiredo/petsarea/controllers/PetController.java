@@ -1,5 +1,7 @@
 package com.yannfigueiredo.petsarea.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -47,14 +49,14 @@ public class PetController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<PetDTO> insert(@RequestBody PetInsertDTO dto) {
+	public ResponseEntity<PetDTO> insert(@Valid @RequestBody PetInsertDTO dto) {
 		PetDTO newDTO = petService.insert(dto);
 		
 		return ResponseEntity.ok().body(newDTO);
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<PetDTO> update(@PathVariable Long id, @RequestBody PetDTO dto) {
+	public ResponseEntity<PetDTO> update(@PathVariable Long id, @Valid @RequestBody PetDTO dto) {
 		dto = petService.update(id, dto);
 		
 		return ResponseEntity.ok().body(dto);

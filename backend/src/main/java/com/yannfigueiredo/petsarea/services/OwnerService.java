@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yannfigueiredo.petsarea.dto.OwnerDTO;
 import com.yannfigueiredo.petsarea.dto.OwnerInsertDTO;
-import com.yannfigueiredo.petsarea.dto.RoleDTO;
 import com.yannfigueiredo.petsarea.entities.Owner;
 import com.yannfigueiredo.petsarea.entities.Role;
 import com.yannfigueiredo.petsarea.repositories.OwnerRepository;

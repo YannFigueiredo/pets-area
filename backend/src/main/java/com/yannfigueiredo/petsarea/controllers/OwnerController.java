@@ -1,5 +1,7 @@
 package com.yannfigueiredo.petsarea.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,14 +32,14 @@ public class OwnerController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<OwnerDTO> insert(@RequestBody OwnerInsertDTO dto) {
+	public ResponseEntity<OwnerDTO> insert(@Valid @RequestBody OwnerInsertDTO dto) {
 		OwnerDTO newDTO = ownerService.insert(dto);
 		
 		return ResponseEntity.ok().body(newDTO);
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<OwnerDTO> update(@PathVariable Long id, @RequestBody OwnerDTO dto) {
+	public ResponseEntity<OwnerDTO> update(@PathVariable Long id, @Valid @RequestBody OwnerDTO dto) {
 		dto = ownerService.update(id, dto);
 		
 		return ResponseEntity.ok().body(dto);
