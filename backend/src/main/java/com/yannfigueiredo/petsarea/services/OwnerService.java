@@ -75,7 +75,7 @@ public class OwnerService {
 			entity.setAge(dto.getAge() == null ? entity.getAge() : dto.getAge());
 			entity.setPhoto(dto.getPhoto() == null ? entity.getPhoto() : dto.getPhoto());
 			entity.setEmail(dto.getEmail());
-			//entity.setPassword(passwordEncoder.encode(dto.getPassword()));
+			entity.setPassword(passwordEncoder.encode(dto.getPassword()));
 			
 			entity.getRoles().clear();
 			for(RoleDTO role : dto.getRoles()) {
