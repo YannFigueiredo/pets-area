@@ -4,9 +4,14 @@ import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,9 +28,11 @@ import com.yannfigueiredo.petsarea.services.exceptions.ControllerNotFoundExcepti
 import com.yannfigueiredo.petsarea.services.exceptions.DatabaseException;
 
 @Service
-public class OwnerService {
+public class OwnerService implements UserDetailsService {
+	private static Logger logger = LoggerFactory.getLogger(OwnerService.class);
+	
 	@Autowired 
-	BCryptPasswordEncoder passwordEncoder;
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	@Autowired
 	private OwnerRepository ownerRepository;
@@ -55,7 +62,7 @@ public class OwnerService {
 		
 		entity.getRoles().clear();
 		for(RoleDTO role : dto.getRoles()) {
-			Role newRole = roleRepository.getReferenceById(role.getId());
+			Role newRole = roleRepository.getOne(role.getId());
 			entity.getRoles().add(newRole);
 		}
 		
@@ -67,7 +74,7 @@ public class OwnerService {
 	@Transactional
 	public OwnerDTO update(Long id, OwnerUpdateDTO dto) {
 		try {
-			Owner entity = ownerRepository.getReferenceById(id);
+			Owner entity = ownerRepository.getOne(id);
 			
 			entity.setFirstName(dto.getFirstName());
 			entity.setLastName(dto.getLastName());        
@@ -79,7 +86,7 @@ public class OwnerService {
 			
 			entity.getRoles().clear();
 			for(RoleDTO role : dto.getRoles()) {
-				Role newRole = roleRepository.getReferenceById(role.getId());
+				Role newRole = roleRepository.getOne(role.getId());
 				entity.getRoles().add(newRole);
 			}
 			
@@ -99,5 +106,19 @@ public class OwnerService {
 		} catch(DataIntegrityViolationException e) {
 			throw new DatabaseException("Violação da integridade do banco de dados");
 		}
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		Owner owner = ownerRepository.findByEmail(username);
+		
+		if(owner == null) {
+			logger.error("Usuário não encontrado: " + username);
+			throw new UsernameNotFoundException("Email não encontrado");
+		}
+			
+		logger.info("Usuário encontrado: " + username);
+			
+		return owner;
 	}
 }

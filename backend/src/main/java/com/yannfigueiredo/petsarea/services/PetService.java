@@ -48,7 +48,7 @@ public class PetService {
 		entity.setType(dto.getType());
 		entity.setAge(dto.getAge());
 		entity.setPhoto(dto.getPhoto());
-		entity.setOwner(ownerRepository.getReferenceById(dto.getOwnerId()));
+		entity.setOwner(ownerRepository.getOne(dto.getOwnerId()));
 		
 		entity = petRepository.save(entity);
 		
@@ -58,7 +58,7 @@ public class PetService {
 	@Transactional
 	public PetDTO update(Long id, PetDTO dto) {
 		try {
-			Pet entity = petRepository.getReferenceById(id);
+			Pet entity = petRepository.getOne(id);
 			
 			entity.setName(dto.getName() == null ? entity.getName() : dto.getName());
 			entity.setDescription(dto.getDescription() == null ? entity.getDescription() : dto.getDescription());         
@@ -66,7 +66,7 @@ public class PetService {
 			entity.setType(dto.getType() == null ? entity.getType() : dto.getType());
 			entity.setAge(dto.getAge() == null ? entity.getAge() : dto.getAge());
 			entity.setPhoto(dto.getPhoto() == null ? entity.getPhoto() : dto.getPhoto());
-			entity.setOwner(ownerRepository.getReferenceById(dto.getOwnerId() == null ? entity.getOwner().getId() : dto.getOwnerId()));
+			entity.setOwner(ownerRepository.getOne(dto.getOwnerId() == null ? entity.getOwner().getId() : dto.getOwnerId()));
 			
 			entity = petRepository.save(entity);
 			
