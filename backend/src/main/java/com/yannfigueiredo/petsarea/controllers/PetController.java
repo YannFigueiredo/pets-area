@@ -29,13 +29,21 @@ public class PetController {
 	@GetMapping
 	public ResponseEntity<Page<PetDTO>> findAll(
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
-			@RequestParam(value = "linesPerPage", defaultValue = "20") Integer linesPerPage,
-			@RequestParam(value = "orderBy", defaultValue = "id") String orderBy,
-			@RequestParam(value = "direction", defaultValue = "DESC") String direction
+			@RequestParam(value = "size", defaultValue = "20") Integer size,
+			@RequestParam(value = "direction", defaultValue = "DESC") String direction,
+			@RequestParam(value = "type", defaultValue = "") String type,
+			@RequestParam(value = "gender", defaultValue = "") String gender
 			) {
-		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		PageRequest pageRequest = PageRequest.of(page, 
+				size, 
+				Direction.valueOf(direction), 
+				"id");
 		
-		Page<PetDTO> list = petService.findAll(pageRequest);
+		Integer petType = type.equals("") ? null : Integer.parseInt(type);
+		
+		Integer petGender = type.equals("") ? null : Integer.parseInt(gender);
+		
+		Page<PetDTO> list = petService.findAllFiltered(petType, petGender, pageRequest);
 		
 		return ResponseEntity.ok().body(list);
 	}

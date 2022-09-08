@@ -26,8 +26,8 @@ public class PetService {
 	private OwnerRepository ownerRepository;
 	
 	@Transactional(readOnly = true)
-	public Page<PetDTO> findAll(PageRequest pageRequest) {
-		return petRepository.findAll(pageRequest).map(x -> new PetDTO(x));
+	public Page<PetDTO> findAllFiltered(Integer type, Integer gender, PageRequest pageRequest) {		
+		return petRepository.findAllFiltered(type, gender, pageRequest).map(x -> new PetDTO(x));
 	}
 	
 	@Transactional(readOnly = true)
