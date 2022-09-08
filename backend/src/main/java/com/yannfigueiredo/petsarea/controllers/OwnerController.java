@@ -1,5 +1,7 @@
 package com.yannfigueiredo.petsarea.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,13 @@ import com.yannfigueiredo.petsarea.services.OwnerService;
 public class OwnerController {
 	@Autowired
 	private OwnerService ownerService;
+	
+	@GetMapping
+	public ResponseEntity<List<OwnerDTO>> findAll() {
+		List<OwnerDTO> list = ownerService.findAll();
+		
+		return ResponseEntity.ok().body(list);
+	}
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<OwnerDTO> findById(@PathVariable Long id) {

@@ -1,6 +1,8 @@
 package com.yannfigueiredo.petsarea.services;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -39,6 +41,13 @@ public class OwnerService implements UserDetailsService {
 	
 	@Autowired
 	private RoleRepository roleRepository;
+	
+	@Transactional(readOnly = true)
+	public List<OwnerDTO> findAll() {
+		List<Owner> list =  ownerRepository.findAll();
+		
+		return list.stream().map(x -> new OwnerDTO(x)).collect(Collectors.toList());
+	}
 	
 	@Transactional(readOnly = true)
 	public OwnerDTO findById(Long id) {
