@@ -15,4 +15,10 @@ public interface PetRepository extends JpaRepository<Pet, Long> {
 					+ "(:type IS NULL OR type = :type) AND "
 					+ "(:gender IS NULL OR gender = :gender)")
 	Page<Pet> findAllFiltered(Integer type, Integer gender, Pageable pageable);
+	
+	@Query(nativeQuery = true,
+			value = "SELECT * FROM tb_pet WHERE "
+					+ "name LIKE %:searchedWord% OR "
+					+ "description LIKE %:searchedWord%")
+	Page<Pet> search(String searchedWord, Pageable pageable);
 }

@@ -26,6 +26,23 @@ public class PetController {
 	@Autowired
 	private PetService petService;
 	
+	@GetMapping(value = "/search")
+	public ResponseEntity<Page<PetDTO>> search(
+			@RequestParam(value = "page", defaultValue = "0") Integer page,
+			@RequestParam(value = "size", defaultValue = "20") Integer size,
+			@RequestParam(value = "direction", defaultValue = "DESC") String direction,
+			@RequestParam(value = "searchedWord", defaultValue = "") String searchedWord
+			) {
+		PageRequest pageRequest = PageRequest.of(page, 
+				size, 
+				Direction.valueOf(direction), 
+				"id");
+		
+		Page<PetDTO> list = petService.search(searchedWord, pageRequest);
+		
+		return ResponseEntity.ok().body(list);
+	}
+	
 	@GetMapping
 	public ResponseEntity<Page<PetDTO>> findAll(
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
@@ -41,7 +58,7 @@ public class PetController {
 		
 		Integer petType = type.equals("") ? null : Integer.parseInt(type);
 		
-		Integer petGender = type.equals("") ? null : Integer.parseInt(gender);
+		Integer petGender = gender.equals("") ? null : Integer.parseInt(gender);
 		
 		Page<PetDTO> list = petService.findAllFiltered(petType, petGender, pageRequest);
 		
