@@ -31,8 +31,8 @@ public class PetService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Page<PetDTO> findAllFiltered(Integer type, Integer gender, PageRequest pageRequest) {		
-		return petRepository.findAllFiltered(type, gender, pageRequest).map(x -> new PetDTO(x));
+	public Page<PetDTO> findAllFiltered(Integer minAge, Integer maxAge, Integer type, Integer gender, PageRequest pageRequest) {		
+		return petRepository.findAllFiltered(minAge, maxAge, type, gender, pageRequest).map(x -> new PetDTO(x));
 	}
 	
 	@Transactional(readOnly = true)

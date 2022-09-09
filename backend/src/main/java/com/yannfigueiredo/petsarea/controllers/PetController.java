@@ -35,8 +35,9 @@ public class PetController {
 			) {
 		PageRequest pageRequest = PageRequest.of(page, 
 				size, 
-				Direction.valueOf(direction), 
-				"id");
+				Direction.valueOf(direction),
+				"id"
+				);
 		
 		Page<PetDTO> list = petService.search(searchedWord, pageRequest);
 		
@@ -48,19 +49,25 @@ public class PetController {
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "size", defaultValue = "20") Integer size,
 			@RequestParam(value = "direction", defaultValue = "DESC") String direction,
+			@RequestParam(value = "orderBy", defaultValue = "id") String orderBy,
 			@RequestParam(value = "type", defaultValue = "") String type,
-			@RequestParam(value = "gender", defaultValue = "") String gender
+			@RequestParam(value = "gender", defaultValue = "") String gender,
+			@RequestParam(value = "minAge", defaultValue = "") String minAge,
+			@RequestParam(value = "maxAge", defaultValue = "") String maxAge
 			) {
 		PageRequest pageRequest = PageRequest.of(page, 
 				size, 
 				Direction.valueOf(direction), 
-				"id");
+				orderBy);
 		
 		Integer petType = type.equals("") ? null : Integer.parseInt(type);
-		
 		Integer petGender = gender.equals("") ? null : Integer.parseInt(gender);
+		Integer min = minAge.equals("") ? null : Integer.parseInt(minAge);
+		Integer max = maxAge.equals("") ? null : Integer.parseInt(maxAge);
 		
-		Page<PetDTO> list = petService.findAllFiltered(petType, petGender, pageRequest);
+		
+		
+		Page<PetDTO> list = petService.findAllFiltered(min, max, petType, petGender, pageRequest);
 		
 		return ResponseEntity.ok().body(list);
 	}

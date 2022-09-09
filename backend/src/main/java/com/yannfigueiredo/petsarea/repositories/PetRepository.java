@@ -13,8 +13,9 @@ public interface PetRepository extends JpaRepository<Pet, Long> {
 	@Query(nativeQuery = true, 
 			value = "SELECT * FROM tb_pet WHERE "
 					+ "(:type IS NULL OR type = :type) AND "
-					+ "(:gender IS NULL OR gender = :gender)")
-	Page<Pet> findAllFiltered(Integer type, Integer gender, Pageable pageable);
+					+ "(:gender IS NULL OR gender = :gender) AND"
+					+ "((:minAge IS NULL OR age >= :minAge) AND (:maxAge IS NULL OR age <= :maxAge))")
+	Page<Pet> findAllFiltered(Integer minAge, Integer maxAge, Integer type, Integer gender, Pageable pageable);
 	
 	@Query(nativeQuery = true,
 			value = "SELECT * FROM tb_pet WHERE "
