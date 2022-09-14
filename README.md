@@ -1,5 +1,5 @@
 # Pets Area
-[![NPM](https://github.com/YannFigueiredo/pets-area/blob/main/LICENSE) 
+[![NPM](https://img.shields.io/npm/l/react)](https://github.com/YannFigueiredo/pets-area/blob/main/LICENSE)
 
 # Sobre o projeto
 
