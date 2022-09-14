@@ -20,6 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.yannfigueiredo.petsarea.dto.PetDTO;
 import com.yannfigueiredo.petsarea.services.PetService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping(value = "/pets")
 public class PetController {
@@ -27,6 +31,7 @@ public class PetController {
 	private PetService petService;
 	
 	@GetMapping(value = "/search")
+	@ApiOperation(value = "Retorna uma lista paginada de pets filtrados por busca de string")
 	public ResponseEntity<Page<PetDTO>> search(
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "size", defaultValue = "20") Integer size,
@@ -45,6 +50,7 @@ public class PetController {
 	}
 	
 	@GetMapping
+	@ApiOperation(value = "Retorna uma lista paginada de todos os pets e filtra a lista")
 	public ResponseEntity<Page<PetDTO>> findAll(
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "size", defaultValue = "20") Integer size,
@@ -73,6 +79,10 @@ public class PetController {
 	}
 	
 	@GetMapping(value = "/{id}")
+	@ApiResponses(value = {
+			@ApiResponse(code = 404, message = "Resource not found")
+	})
+	@ApiOperation(value = "Retorna um pet e suas informações")
 	public ResponseEntity<PetDTO> findById(@PathVariable Long id) {
 		PetDTO dto = petService.findById(id);
 		
@@ -80,6 +90,10 @@ public class PetController {
 	}
 	
 	@PostMapping
+	@ApiResponses(value = {
+			@ApiResponse(code = 422, message = "Validation exception")
+	})
+	@ApiOperation(value = "Adiciona um novo pet")
 	public ResponseEntity<PetDTO> insert(@Valid @RequestBody PetDTO dto) {
 		PetDTO newDTO = petService.insert(dto);
 		
@@ -87,6 +101,11 @@ public class PetController {
 	}
 	
 	@PutMapping(value = "/{id}")
+	@ApiResponses(value = {
+			@ApiResponse(code = 404, message = "Resource not found"),
+			@ApiResponse(code = 422, message = "Validation exception")
+	})
+	@ApiOperation(value = "Atualiza um pet existente")
 	public ResponseEntity<PetDTO> update(@PathVariable Long id, @Valid @RequestBody PetDTO dto) {
 		dto = petService.update(id, dto);
 		
@@ -94,6 +113,10 @@ public class PetController {
 	}
 	
 	@DeleteMapping(value = "/{id}")
+	@ApiResponses(value = {
+			@ApiResponse(code = 404, message = "Resource not found")
+	})
+	@ApiOperation(value = "Deleta um pet existente")
 	public ResponseEntity<PetDTO> delete(@PathVariable Long id) {
 		petService.delete(id);
 		

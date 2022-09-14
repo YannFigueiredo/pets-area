@@ -12,10 +12,13 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @Configuration
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
+	
+	/*Em desenvolvimento...*/
+	
 	@Autowired
 	private JwtTokenStore tokenStore;
 	
-	private static final String[] PUBLIC = {"/oauth/token"};
+	private static final String[] PUBLIC = {"/oauth/token", "/owners/**", "/pets/**"};
 	
 	private static final String[] OPERATOR_OR_ADMIN = {"/owners/**", "/pets/**"};
 	
@@ -28,12 +31,13 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
+		/*http.authorizeRequests()
 		.antMatchers(PUBLIC).permitAll()
 		.antMatchers(HttpMethod.GET, OPERATOR_OR_ADMIN).permitAll()
 		.antMatchers(OPERATOR_OR_ADMIN).hasAnyRole("OPERATOR", "ADMIN")
 		.antMatchers(ADMIN).hasAnyRole("ADMIN")
-		.anyRequest().authenticated();
+		.anyRequest().authenticated();*/
+		http.authorizeRequests().antMatchers(PUBLIC).permitAll();
 	}
 
 }

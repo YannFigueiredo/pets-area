@@ -21,6 +21,10 @@ import com.yannfigueiredo.petsarea.dto.OwnerUpdateDTO;
 import com.yannfigueiredo.petsarea.dto.PetDTO;
 import com.yannfigueiredo.petsarea.services.OwnerService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping(value = "/owners")
 public class OwnerController {
@@ -28,6 +32,7 @@ public class OwnerController {
 	private OwnerService ownerService;
 	
 	@GetMapping
+	@ApiOperation(value = "Retorna uma lista com todos os owners")
 	public ResponseEntity<List<OwnerDTO>> findAll() {
 		List<OwnerDTO> list = ownerService.findAll();
 		
@@ -35,6 +40,10 @@ public class OwnerController {
 	}
 	
 	@GetMapping(value = "/{id}")
+	@ApiResponses(value = {
+			@ApiResponse(code = 404, message = "Resource not found")
+	})
+	@ApiOperation(value = "Retorna um owner e suas informações")
 	public ResponseEntity<OwnerDTO> findById(@PathVariable Long id) {
 		OwnerDTO dto = ownerService.findById(id);
 		
@@ -42,6 +51,10 @@ public class OwnerController {
 	}
 	
 	@PostMapping
+	@ApiResponses(value = {
+			@ApiResponse(code = 422, message = "Validation exception")
+	})
+	@ApiOperation(value = "Adiciona um novo owner")
 	public ResponseEntity<OwnerDTO> insert(@Valid @RequestBody OwnerInsertDTO dto) {
 		OwnerDTO newDTO = ownerService.insert(dto);
 		
@@ -49,6 +62,11 @@ public class OwnerController {
 	}
 	
 	@PutMapping(value = "/{id}")
+	@ApiResponses(value = {
+			@ApiResponse(code = 404, message = "Resource not found"),
+			@ApiResponse(code = 422, message = "Validation exception")
+	})
+	@ApiOperation(value = "Atualiza um owner existente")
 	public ResponseEntity<OwnerDTO> update(@PathVariable Long id, @Valid @RequestBody OwnerUpdateDTO dto) {
 		OwnerDTO newDTO = ownerService.update(id, dto);
 		                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
@@ -56,6 +74,10 @@ public class OwnerController {
 	}
 	
 	@DeleteMapping(value = "/{id}")
+	@ApiResponses(value = {
+			@ApiResponse(code = 404, message = "Resource not found")
+	})
+	@ApiOperation(value = "Deleta um owner existente")
 	public ResponseEntity<PetDTO> delete(@PathVariable Long id) {
 		ownerService.delete(id);
 		
