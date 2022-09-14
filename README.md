@@ -3,7 +3,7 @@
 
 # Sobre o projeto
 
-Aplicação web com um CRUD para registros anmais de estimação dos usuários. A aplicação contém diversos filtros e opções de ordenação para tratar os registros vindos do banco de dados MySQL.
+Aplicação web com um CRUD para registros animais de estimação dos usuários. A aplicação contém diversos filtros e opções de ordenação para tratar os registros vindos do banco de dados MySQL. É possível ainda filtrar os animais de estimação cadastrados de acordo com uma pesquisa de palavras feita pelo usuário.
 
 *** Autenticação e front-end em desenvolvimento ***
 
