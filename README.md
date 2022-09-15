@@ -3,7 +3,7 @@
 
 # Sobre o projeto
 
-Aplicação web com um CRUD para registros animais de estimação dos usuários. A aplicação contém diversos filtros e opções de ordenação para tratar os registros vindos do banco de dados MySQL. É possível ainda filtrar os animais de estimação cadastrados de acordo com uma pesquisa de palavras feita pelo usuário.
+Aplicação web com um CRUD para registros animais de estimação dos usuários. A aplicação contém diversos filtros e opções de ordenação para tratar os registros vindos do banco de dados PostgreSQL. É possível ainda filtrar os animais de estimação cadastrados de acordo com uma pesquisa de palavras feita pelo usuário.
 
 *** Autenticação e front-end em desenvolvimento ***
 
@@ -11,7 +11,7 @@ Aplicação web com um CRUD para registros animais de estimação dos usuários.
 <img src="https://github.com/YannFigueiredo/assets/blob/main/pets-area/modelo-conceitual.png"  alt="Modelo conceitual" title="Modelo conceitual"/>
 
 ## Documentação da API
-[link swagger]
+https://petsarea.herokuapp.com/swagger-ui/
 
 # Tecnologias utilizadas
 ## Back end
@@ -20,7 +20,7 @@ Aplicação web com um CRUD para registros animais de estimação dos usuários.
 - Spring Boot
 - JPA / Hibernate
 - Maven
-- MySQL
+- PostgreSQL
 - Swagger
 - Docker
 
@@ -30,7 +30,7 @@ Aplicação web com um CRUD para registros animais de estimação dos usuários.
 ## Implantação em produção
 - Back end: Heroku
 - Front end: Netlify
-- Banco de dados: MySQL
+- Banco de dados: PostgreSQL
 
 # Como executar o projeto
 
@@ -59,18 +59,6 @@ npm install
 # executar o projeto
 npm start run
 ```
-## Projeto completo com Docker
-Pré-requisitos: Docker
-
-```bash
-# clonar repositório
-git clone https://github.com/YannFigueiredo/petsarea
-# entrar na pasta do projeto petsarea
-cd petsarea
-# executar Docker
-docker-compose up -d
-```
-
 # Autor
 
 Yann Fabricio Cardoso de Figueiredo
