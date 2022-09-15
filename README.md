@@ -50,14 +50,7 @@ cd backend
 Pré-requisitos: npm / yarn  e NodeJs
 
 ```bash
-# clonar repositório
-git clone https://github.com/YannFigueiredo/petsarea
-# entrar na pasta do projeto front end
-cd frontend
-# instalar dependências
-npm install
-# executar o projeto
-npm start run
+# Em desenvolvimento
 ```
 # Autor
 
