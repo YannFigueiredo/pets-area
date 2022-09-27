@@ -9,16 +9,15 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
-@Configuration
-@EnableResourceServer
+
+//@Configuration
+//@EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
-	
-	/*Em desenvolvimento...*/
 	
 	@Autowired
 	private JwtTokenStore tokenStore;
 	
-	private static final String[] PUBLIC = {"/oauth/token", "/owners/**", "/pets/**", "/h2-console"};
+	private static final String[] PUBLIC = {"/oauth/token", "/owners/**", "/pets/**", "/h2-console/**"};
 	
 	private static final String[] OPERATOR_OR_ADMIN = {"/owners/**", "/pets/**"};
 	

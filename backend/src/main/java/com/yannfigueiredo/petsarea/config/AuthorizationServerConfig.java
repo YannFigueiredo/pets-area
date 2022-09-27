@@ -18,8 +18,8 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 import com.yannfigueiredo.petsarea.components.JwtTokenEnhancer;
 
-@Configuration
-@EnableAuthorizationServer
+//@Configuration
+//@EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 	@Value("${security.oauth2.client.client-id}")
 	private String clientId;

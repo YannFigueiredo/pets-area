@@ -71,8 +71,6 @@ public class PetController {
 		Integer min = minAge.equals("") ? null : Integer.parseInt(minAge);
 		Integer max = maxAge.equals("") ? null : Integer.parseInt(maxAge);
 		
-		
-		
 		Page<PetDTO> list = petService.findAllFiltered(min, max, petType, petGender, pageRequest);
 		
 		return ResponseEntity.ok().body(list);
