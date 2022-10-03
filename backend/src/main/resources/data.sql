@@ -13,4 +13,4 @@ INSERT INTO tb_owner_role(owner_id, role_id) VALUES (3, 1);
 INSERT INTO tb_pet(name, age, type, description, gender, owner_id) VALUES ('Pandora', 0, 0, 'Uma labrador muito fofa.', 1, 1);
 INSERT INTO tb_pet(name, age, type, description, gender, owner_id) VALUES ('Barrento', 5, 5, 'Uma cágado muito fujão.', 0, 1);
 INSERT INTO tb_pet(name, age, type, description, gender, owner_id) VALUES ('Filó', 3, 1, 'Uma gata muito manhosa.', 1, 2);
-INSERT INTO tb_pet(name, age, type, description, gender, owner_id) VALUES ('Pietra', 10, 0, 'Uma pitbull velhinha.', 1, 3);
+INSERT INTO tb_pet(name, age, type, description, gender, owner_id) VALUES ('Pietra', 10, 0, 'Uma pitbull velhinha.', 1, 2);
