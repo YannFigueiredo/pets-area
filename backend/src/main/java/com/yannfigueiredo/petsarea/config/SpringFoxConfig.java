@@ -26,8 +26,7 @@ public class SpringFoxConfig {
 	private ApiInfo apiInfo() {
 	    return new ApiInfoBuilder()
 	            .title("Pets Area API")
-	            .description("API com um CRUD de cadastro de animais de estimação dos usuários.\n\n"
-	            		+ "***Autenticação em desenvolvimento***")
+	            .description("API com um CRUD de cadastro de animais de estimação dos usuários.")
 	            .version("1.0.0")
 	            .contact(new Contact("Yann Figueiredo", "https://www.linkedin.com/in/yannfigueiredo/", "yann.fabricio@hotmail.com"))
 	            .build();
